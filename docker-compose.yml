@@ -1,0 +1,62 @@
+services:
+    runner:
+#        build:
+#            context: ./docker
+#            args:
+#                RUNNER_VERSION: ${RUNNER_VERSION}
+#                RUNNER_HOME: ${RUNNER_HOME}
+        image: ${REGISTRY}/github-actions:2.329.0
+        restart: on-failure:10
+        env_file:
+            - ./.env.runner
+        mem_limit: '1G'
+        cpus: '1.0'
+        #        deploy:
+        #            mode: replicated
+        #            replicas: 1
+        #            resources:
+        #                limits:
+        #                    cpus: '0.5'
+        #                    memory: 512M
+        #                reservations:
+        #                    cpus: '0.4'
+        #                    memory: 256M
+        volumes:
+            - runner-work:${RUNNER_HOME}/actions-runner
+#            - runner-buildx:${RUNNER_HOME}/.cache/docker
+            - runner-buildx-cache:${RUNNER_HOME}/tmp/.buildx-cache
+        depends_on:
+            - dind
+        networks:
+            - github-runner
+
+    dind:
+        image: docker:29-dind
+        hostname: docker
+        privileged: true
+        restart: on-failure:10
+        expose:
+            - "${DIND_PORT}"
+        env_file:
+            - ./.env.runner
+        healthcheck:
+            test: [ "CMD", "pgrep", "dockerd" ]
+            interval: 10s
+            timeout: 30s
+            retries: 10
+        environment:
+            #            DOCKER_TLS_CERTDIR: /certs
+            DOCKER_TLS_CERTDIR: ""  # Disable TLS for simplicity
+            DOCKER_HOST: dind
+        volumes:
+            - buildkit:${RUNNER_HOME}/buildkit-cache
+        networks:
+            - github-runner
+
+networks:
+    github-runner:
+        driver: bridge
+volumes:
+    runner-work:
+    runner-buildx-cache:
+    buildkit:
