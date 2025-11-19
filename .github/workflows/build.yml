@@ -46,6 +46,6 @@ jobs:
           tags: latest
 #          tags: ${{ steps.meta.outputs.tags }}
 #          labels: ${{ steps.meta.outputs.labels }}
-          build-args: RUNNER_VERSION=${{ steps.get-runner-version.outputs }}
+          build-args: RUNNER_VERSION=${{ steps.get-runner-version.outputs.runner_version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
