@@ -1,5 +1,7 @@
 # Github Self‑Hosted Runner
 
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/alisalehi1380/github-self-hosted-runner/total)
+
 > [!WARNING]
 > 🚧 This project is still in development (beta version).
 
