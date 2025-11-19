@@ -34,7 +34,7 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           context: ./docker
-#          file: ./docker/Dockerfile
+          file: Dockerfile
           push: true
           tags: latest
 #          tags: ${{ steps.meta.outputs.tags }}
