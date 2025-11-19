@@ -2,9 +2,9 @@ name: Build Image
 
 on:
   workflow_dispatch:
-#  push:
-#    branches:
-#      - master
+  push:
+    branches:
+      - master
 
 permissions:
   contents: read
@@ -34,7 +34,7 @@ jobs:
         run: |
           RUNNER_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | grep tag_name | cut -d '"' -f4)
           echo "Latest Runner version: $RUNNER_VERSION"
-          echo "runner_version=$RUNNER_VERSION" >> $GITHUB_OUTPUT
+          echo $RUNNER_VERSION >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -45,6 +45,6 @@ jobs:
           tags: latest
 #          tags: ${{ steps.meta.outputs.tags }}
 #          labels: ${{ steps.meta.outputs.labels }}
-          build-args: RUNNER_VERSION=${{ steps.get-runner-version.outputs.runner_version }}
+          build-args: RUNNER_VERSION=${{ steps.get-runner-version.outputs }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
