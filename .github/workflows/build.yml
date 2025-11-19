@@ -32,9 +32,10 @@ jobs:
       - name: Get latest Actions Runner version
         id: get-runner-version
         run: |
-          RUNNER_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | grep tag_name | cut -d '"' -f4)
+          RUNNER_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | jq -r .tag_name | sed 's/^v//')
+          
           echo "Latest Runner version: $RUNNER_VERSION"
-          echo $RUNNER_VERSION >> $GITHUB_OUTPUT
+          echo "runner_version=$RUNNER_VERSION" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
