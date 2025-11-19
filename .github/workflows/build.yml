@@ -43,7 +43,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           context: ./docker
           push: true
-          tags: latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/actions-runner:latest
 #          tags: ${{ steps.meta.outputs.tags }}
 #          labels: ${{ steps.meta.outputs.labels }}
           build-args: RUNNER_VERSION=${{ steps.get-runner-version.outputs.runner_version }}
