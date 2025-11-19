@@ -53,9 +53,6 @@ cd "$WORKDIR" || {
   exit 1
 }
 
-echo "change /tmp/.buildx-cache ownership..."
-chown -R runner:runner $RUNNER_HOME/tmp/.buildx-cache || true
-
 if [[ "$DISABLE_RUNNER_UPDATE" == "true" || "$DISABLE_RUNNER_UPDATE" == "1" ]]; then
   DISABLE_FLAG="--disableupdate"
   echo "🔒 Auto-update disabled"
@@ -76,7 +73,7 @@ registration_github_token=$(get_registration_token "${REPO}" "${GITHUB_PERSONAL_
 ./config.sh \
   --url https://github.com/${REPO} \
   --token ${registration_github_token} \
-  --name ${NAME} \
+  --name ${RUNNER_NAME} \
   $DISABLE_FLAG
 
 cleanup() {

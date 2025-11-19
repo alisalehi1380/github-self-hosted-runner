@@ -1,14 +1,18 @@
 FROM ubuntu:20.04
 
+LABEL maintainer="Ali Salehi <alisalehi.dev@gmail.com>"
+
 ARG RUNNER_VERSION="2.329.0"
-ARG RUNNER_HOME="/home/runner"
 ARG DEBIAN_FRONTEND=noninteractive
+ARG RUNNER_USERNAME="runner"
+ARG RUNNER_HOME_PATH="/home/$RUNNER_USERNAME"
+ARG RUNNER_DIRECTORY="actions-runner"
 
 # Update and upgrade the system
 RUN apt update -y && apt upgrade -y
 
 # Add a user named runner
-RUN useradd -m runner
+RUN useradd -m ${RUNNER_USERNAME}
 
 # Install necessary packages & Docker CLI
 RUN apt install -y --no-install-recommends \
@@ -28,20 +32,21 @@ RUN apt-get -yqq install ssh && \
     rm -rf /var/lib/apt/lists/*
 
 # Set up the actions runner
-RUN cd ${RUNNER_HOME} \
-    && mkdir actions-runner \
-    && cd actions-runner \
-    && curl -o actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-    && tar xzf actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+RUN cd ${RUNNER_HOME_PATH} && \
+    mkdir ${RUNNER_DIRECTORY}  && \
+    cd ${RUNNER_DIRECTORY} && \
+    curl -sSL -o actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && \
+    tar xzf actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && \
+    rm actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 # Change ownership to runner user and install dependencies
-RUN chown -R runner:runner ${RUNNER_HOME} && ${RUNNER_HOME}/actions-runner/bin/installdependencies.sh
+RUN chown -R ${RUNNER_USERNAME}:${RUNNER_USERNAME} ${RUNNER_HOME_PATH} && ${RUNNER_HOME_PATH}/${RUNNER_DIRECTORY}/bin/installdependencies.sh
 
 # Copy the start script and make it executable
 COPY --chmod=+x start.sh /start.sh
 
 # Switch to runner user
-USER runner
+USER ${RUNNER_USERNAME}
 
 # Define the entrypoint
 ENTRYPOINT ["/start.sh"]
