@@ -45,6 +45,8 @@ This repository provides a fully containerized solution for deploying and managi
 4. **Verify the runner:**  
    Once the container is up, go to your repository’s **Settings › Actions › Runners** page to confirm that the runner is registered and online.
 
+<img width="710" height="86" alt="image" src="https://github.com/user-attachments/assets/6f51c0b2-16d8-44b2-b30d-072b7c466796" />
+
 [docker-badge]: https://img.shields.io/docker/pulls/alisalehi1380/github-actions
 [docker-url]: https://hub.docker.com/r/alisalehi1380/github-actions
 [build-badge]: https://github.com/alisalehi1380/github-self-hosted-runner/actions/workflows/build.yml/badge.svg
