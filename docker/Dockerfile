@@ -5,8 +5,8 @@ LABEL maintainer="Ali Salehi <alisalehi.dev@gmail.com>"
 ARG RUNNER_VERSION="2.329.0"
 ARG DEBIAN_FRONTEND=noninteractive
 ARG RUNNER_USERNAME="runner"
-ARG RUNNER_HOME_PATH="/home/$RUNNER_USERNAME"
-ARG RUNNER_DIRECTORY="actions-runner"
+ARG RUNNER_HOME_PATH="/home/${RUNNER_USERNAME}"
+ARG RUNNER_DIRECTORY="github-self-hosted-runner"
 
 # Update and upgrade the system
 RUN apt update -y && apt upgrade -y
