@@ -14,7 +14,7 @@ This repository provides a fully containerized solution for deploying and managi
 git clone https://github.com/alisalehi1380/github-self-hosted-runner.git
 cd github-self-hosted-runner
 cp .env.example .env
-docker composer up -d
+docker compose up -d
 ```
 
 
