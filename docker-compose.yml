@@ -13,16 +13,6 @@ services:
             - dind
         networks:
             - github-runner
-        # deploy:
-        #     mode: replicated
-        #     replicas: 1
-        #     resources:
-        #         limits:
-        #             cpus: '0.5'
-        #             memory: 512M
-        #         reservations:
-        #             cpus: '0.4'
-        #             memory: 256M
 
     dind:
         image: docker
