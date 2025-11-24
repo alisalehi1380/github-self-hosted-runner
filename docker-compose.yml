@@ -35,7 +35,7 @@ services:
             timeout: 30s
             retries: 10
         environment:
-            DOCKER_TLS_CERTDIR: "" # Disable TLS for simplicity
+            DOCKER_TLS_CERTDIR: ${DOCKER_TLS_CERTDIR}
         volumes:
             - dind-data:/var/lib/docker
         networks:
