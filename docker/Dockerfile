@@ -31,7 +31,7 @@ RUN apt-get -yqq install ssh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Set up the actions runner
+# Set up the actions runner for linux
 RUN cd ${RUNNER_HOME_PATH} && \
     mkdir ${RUNNER_DIRECTORY}  && \
     cd ${RUNNER_DIRECTORY} && \
