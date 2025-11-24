@@ -3,8 +3,8 @@
 [![Docker Pulls][docker-badge]][docker-url]
 [![Build Status][build-badge]][build-file-url]
 
-> [!WARNING]
-> 🚧 This project is still in development (beta version).
+[//]: # (> [!WARNING])
+[//]: # (> 🚧 This project is still in development &#40;beta version&#41;.)
 
 Welcome to the GitHub Self‑Hosted Runner Dockerization project.
 
