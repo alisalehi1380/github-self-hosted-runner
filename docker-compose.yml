@@ -1,6 +1,8 @@
 services:
     runner:
-        image: alisalehi1380/github-actions:${RUNNER_VERSION}
+        build:
+            context: ./docker
+            dockerfile: ../docker/Dockerfile
         restart: on-failure:10
         mem_limit: '1G'
         cpus: '1.0'
