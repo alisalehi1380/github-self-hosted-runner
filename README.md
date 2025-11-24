@@ -8,7 +8,14 @@
 
 Welcome to the GitHub Self‑Hosted Runner Dockerization project. 🚀🐳
 
-This repository provides a fully containerized solution for deploying and managing self‑hosted GitHub Actions runners using Docker. 
+This repository provides a fully containerized solution for deploying and managing self‑hosted GitHub Actions runners using Docker.
+
+```bash
+git clone https://github.com/alisalehi1380/github-self-hosted-runner.git
+cp .env.example .env
+docker composer up -d
+```
+
 
 [docker-badge]: https://img.shields.io/docker/pulls/alisalehi1380/github-actions
 [docker-url]: https://hub.docker.com/r/alisalehi1380/github-actions

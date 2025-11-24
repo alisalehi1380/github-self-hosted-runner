@@ -5,7 +5,8 @@ services:
         mem_limit: '1G'
         cpus: '1.0'
         volumes:
-            - runner-work:${RUNNER_HOME_PATH}/${RUNNER_DIRECTORY}
+            - runner-data:${RUNNER_HOME}/github-self-hosted-runner
+            - runner-docker-data:${RUNNER_HOME}/.docker
         depends_on:
             - dind
         networks:
@@ -35,13 +36,15 @@ services:
             retries: 10
         environment:
             DOCKER_TLS_CERTDIR: "" # Disable TLS for simplicity
-            DOCKER_HOST: dind
+        volumes:
+            - dind-data:/var/lib/docker
         networks:
             - github-runner
 
 volumes:
-    runner-work:
+    runner-data:
+    runner-docker-data:
+    dind-data:
 
 networks:
     github-runner:
-        driver: bridge
