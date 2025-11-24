@@ -30,11 +30,17 @@ This repository provides a fully containerized solution for deploying and managi
    ```
 
 2. **Configure the environment variables:**  
-   Copy the example environment file and edit it to specify your `REPO`, `GITHUB_PERSONAL_TOKEN`, and `RUNNER_NAME`.  
+   Copy the example environment file and edit it to define your `REPO` and `GITHUB_PERSONAL_TOKEN`.  
    Your [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#about-personal-access-tokens) must have **"Administration"** repository permissions (write access).
 
    ```sh
    cp .env.example .env
+   ```
+
+   example:
+   ```dotenv
+   REPO="alisalehi1380/github-self-hosted-runner"
+   GITHUB_PERSONAL_TOKEN="github_pat_**********"
    ```
 
 3. **Deploy the self‑hosted runner:**
