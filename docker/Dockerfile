@@ -49,4 +49,4 @@ RUN chown -R ${RUNNER_USERNAME}:${RUNNER_USERNAME} ${RUNNER_HOME_PATH} && ${RUNN
 USER ${RUNNER_USERNAME}
 
 # Define the entrypoint
- ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/start.sh"]
