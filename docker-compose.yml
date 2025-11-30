@@ -4,6 +4,8 @@ services:
         restart: on-failure:10
         mem_limit: '1G'
         cpus: '1.0'
+        env_file:
+            - .env
         volumes:
             - runner-data:${RUNNER_HOME}/github-self-hosted-runner
             - runner-docker-data:${RUNNER_HOME}/.docker
