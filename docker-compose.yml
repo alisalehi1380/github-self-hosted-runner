@@ -7,7 +7,7 @@ services:
         env_file:
             - .env
         volumes:
-            - runner-data:${RUNNER_HOME}/github-self-hosted-runner
+            - runner-data:${RUNNER_HOME}/${RUNNER_DIRECTORY}
             - runner-docker-data:${RUNNER_HOME}/.docker
         depends_on:
             - dind
