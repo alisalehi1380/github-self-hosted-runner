@@ -45,7 +45,7 @@ This repository provides a fully containerized solution for deploying and managi
 
 3. **Deploy the self‑hosted runner:**
    ```sh
-   docker-compose up -d
+   docker compose up -d
    ```
 
 4. **Verify the runner:**  
