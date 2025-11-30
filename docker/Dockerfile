@@ -43,10 +43,10 @@ RUN cd ${RUNNER_HOME_PATH} && \
 RUN chown -R ${RUNNER_USERNAME}:${RUNNER_USERNAME} ${RUNNER_HOME_PATH} && ${RUNNER_HOME_PATH}/${RUNNER_DIRECTORY}/bin/installdependencies.sh
 
 # Copy the start script and make it executable
-COPY --chmod=+x start.sh /start.sh
+# COPY --chmod=+x start.sh /start.sh
 
 # Switch to runner user
 USER ${RUNNER_USERNAME}
 
 # Define the entrypoint
-ENTRYPOINT ["/start.sh"]
+# ENTRYPOINT ["/start.sh"]
