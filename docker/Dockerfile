@@ -33,7 +33,7 @@ RUN apt-get -yqq install ssh && \
 
 # Set up the actions runner for linux
 RUN cd ${RUNNER_HOME_PATH} && \
-    mkdir ${RUNNER_DIRECTORY}  && \
+    mkdir ${RUNNER_DIRECTORY} .docker && \
     cd ${RUNNER_DIRECTORY} && \
     curl -sSL -o actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && \
     tar xzf actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz && \
