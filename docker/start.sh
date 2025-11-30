@@ -47,7 +47,7 @@ get_registration_token() {
   echo "$registration_token"
 }
 
-WORKDIR="$RUNNER_HOME/actions-runner"
+WORKDIR="$RUNNER_HOME/$RUNNER_DIRECTORY"
 cd "$WORKDIR" || {
   echo "❌ Directory not found: $WORKDIR"
   exit 1
